@@ -1,0 +1,5 @@
+spring:
+  redis:
+    host: 192.168.2.203
+    port: 20303
+    password: itouch123
