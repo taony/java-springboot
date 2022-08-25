@@ -18,6 +18,7 @@ public class RedisStreamListener implements StreamListener<String, MapRecord<Str
     @Override
     public void onMessage(MapRecord<String, String, String> entries) {
         try {
+            Thread.sleep(5000);
             log.info(entries.toString());
             redisUtil.delField(entries.getStream(), entries.getId().getValue());
         } catch (Exception e) {

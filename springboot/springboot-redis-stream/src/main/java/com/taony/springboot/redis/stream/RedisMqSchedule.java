@@ -3,6 +3,7 @@
  */
 package com.taony.springboot.redis.stream;
 
+import cn.hutool.core.date.DateUtil;
 import cn.hutool.core.util.IdUtil;
 import com.taony.springboot.redis.utils.RedisStreamUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +11,7 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -30,11 +32,14 @@ public class RedisMqSchedule {
 
     @Scheduled(fixedRate = 3000)
     private void addStreamTask() {
-        Map<String, Object> msg = new HashMap<>();
-        msg.put("reportId", IdUtil.getSnowflakeNextIdStr());
-        msg.put("entName", "企业-" + IdUtil.nanoId());
-        redisUtil.addStream("es-ztc-batch-mq1", msg);
-        System.out.println("添加任务" + System.nanoTime());
+        for (int i = 0; i < 10; i++) {
+            Map<String, Object> msg = new HashMap<>();
+            msg.put("reportId", IdUtil.getSnowflakeNextIdStr());
+            msg.put("entName", "企业-" + IdUtil.nanoId());
+            msg.put("sendTime", DateUtil.formatTime(new Date()));
+            redisUtil.addStream("es-ztc-batch-mq1", msg);
+            System.out.println("添加任务" + System.nanoTime());
+        }
     }
 
 }
