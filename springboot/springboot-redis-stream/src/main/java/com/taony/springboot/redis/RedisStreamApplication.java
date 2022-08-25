@@ -7,10 +7,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @author Administrator
  */
 @SpringBootApplication
-public class RedisStreamApp {
+public class RedisStreamApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(RedisStreamApp.class, args);
+        SpringApplication.run(RedisStreamApplication.class, args);
     }
 
 }
